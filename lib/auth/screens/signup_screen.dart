@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasktracker/auth/screens/signin_screen.dart';
+import 'package:tasktracker/auth/services/authServices.dart';
 import 'package:tasktracker/common/custom_button.dart';
 import 'package:tasktracker/common/custom_textfield.dart';
 import 'package:tasktracker/constants/global_variables.dart';
@@ -16,6 +17,8 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final Authservices authservices = Authservices();
+  final _signupFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,19 +55,26 @@ class _SignupScreenState extends State<SignupScreen> {
             SizedBox(
               height: 20,
             ),
-            CustomTextfield(controller: nameController, hintText: "Name"),
-            SizedBox(
-              height: 20,
-            ),
-            CustomTextfield(
-                controller: userNameController, hintText: "User Name"),
-            SizedBox(
-              height: 20,
-            ),
-            CustomTextfield(
-              controller: passwordController,
-              hintText: "Password",
-              obscureText: true,
+            Form(
+              key: _signupFormKey,
+              child: Column(
+                children: [
+                  CustomTextfield(controller: nameController, hintText: "Name"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextfield(
+                      controller: userNameController, hintText: "User Name"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextfield(
+                    controller: passwordController,
+                    hintText: "Password",
+                    obscureText: true,
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: 20,
@@ -72,8 +82,13 @@ class _SignupScreenState extends State<SignupScreen> {
             CustomButton(
               label: "Continue",
               onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, SigninScreen.routeName, (route) => false);
+                if (_signupFormKey.currentState!.validate()) {
+                  authservices.signupUser(
+                      context: context,
+                      name: nameController.text,
+                      userName: userNameController.text,
+                      password: passwordController.text);
+                }
               },
             ),
             SizedBox(

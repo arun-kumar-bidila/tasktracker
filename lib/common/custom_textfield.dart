@@ -56,6 +56,12 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: GlobalVariables.buttonColor))),
       maxLines: widget.maxLines,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Enter Your ${widget.hintText}";
+        }
+        return null;
+      },
     );
   }
 }
