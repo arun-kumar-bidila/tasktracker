@@ -1,12 +1,10 @@
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:tasktracker/pages/home.dart';
-import 'package:tasktracker/pages/sign_up_screen.dart';
+import 'package:tasktracker/auth/screens/authscreen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -26,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home()
+      home: Authscreen()
     );
   }
 }
