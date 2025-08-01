@@ -4,12 +4,14 @@ require("dotenv").config();
 
 
 const authRouter=require("./routes/authRouter");
+const userRouter = require("./routes/userRouter");
 
 
 const app=express();
 
 app.use(express.json());
 app.use(authRouter);
+app.use(userRouter);
 
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
     console.log("Database connected successfull");

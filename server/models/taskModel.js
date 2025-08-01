@@ -17,15 +17,20 @@ const taskSchema=mongoose.Schema({
     },
     startTime:{
          type:String,
+         default:"Morning"
 
     },
     endTime:{
         type:String,
-        default:"Today"
+        default:"Evening"
     },
     priority:{
         type:String,
         default:"High"
+    },
+    status:{
+        type:String,
+        default:"Pending"
     }
 
 },

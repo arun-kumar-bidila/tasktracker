@@ -20,9 +20,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     userTasks:[
-        {
-            task:taskSchema
-        }
+        taskSchema
     ]
 
 
