@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:tasktracker/auth/screens/authscreen.dart';
-
+import 'package:tasktracker/auth/screens/signup_screen.dart';
+import 'package:tasktracker/constants/global_variables.dart';
+import 'package:tasktracker/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,15 +16,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-
- 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Authscreen()
-    );
+        theme:
+            ThemeData(scaffoldBackgroundColor: GlobalVariables.backgroundColor),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: (settings) => generateRouteSettings(settings),
+        home: SignupScreen());
   }
 }
